@@ -1,6 +1,6 @@
 import type { VariantObject } from '@unocss/core'
 import { definePreset } from '@unocss/core'
-import { variantGetParameter } from '@unocss/preset-wind4/utils'
+import { variantGetParameter } from './utils'
 
 export interface Colors {
   [key: string]: Colors & { DEFAULT?: string } | string
