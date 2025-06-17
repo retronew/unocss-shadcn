@@ -177,7 +177,6 @@ function getTheme(): Theme {
 }
 const variantAriaInvalid: VariantObject = {
   name: 'aria-invalid',
-  order: 1000,
   match(matcher, ctx) {
     const variant = variantGetParameter('aria-invalid-', matcher, ctx.generator.config.separators)
     if (variant) {
@@ -185,6 +184,7 @@ const variantAriaInvalid: VariantObject = {
       return {
         matcher: rest,
         selector: s => `${s}[aria-invalid="${match}"]`,
+        sort: 1000,
       }
     }
 
@@ -192,6 +192,7 @@ const variantAriaInvalid: VariantObject = {
       return {
         matcher: matcher.slice('aria-invalid:'.length),
         selector: s => `${s}[aria-invalid="true"]`,
+        sort: 1000,
       }
     }
   },
