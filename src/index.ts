@@ -1,4 +1,6 @@
+import type { VariantObject } from '@unocss/core'
 import { definePreset } from '@unocss/core'
+import { variantGetParameter } from '@unocss/preset-wind4/utils'
 
 export interface Colors {
   [key: string]: Colors & { DEFAULT?: string } | string
@@ -173,6 +175,26 @@ function getTheme(): Theme {
     },
   }
 }
+const variantAriaInvalid: VariantObject = {
+  name: 'aria-invalid',
+  match(matcher, ctx) {
+    const variant = variantGetParameter('aria-invalid-', matcher, ctx.generator.config.separators)
+    if (variant) {
+      const [match, rest] = variant
+      return {
+        matcher: rest,
+        selector: s => `${s}[aria-invalid="${match}"]`,
+      }
+    }
+
+    if (matcher.startsWith('aria-invalid:')) {
+      return {
+        matcher: matcher.slice('aria-invalid:'.length),
+        selector: s => `${s}[aria-invalid="true"]`,
+      }
+    }
+  },
+}
 
 export const presetShadcn = definePreset(() => {
   return {
@@ -183,5 +205,6 @@ export const presetShadcn = definePreset(() => {
       },
     ],
     theme: getTheme(),
+    variants: [variantAriaInvalid],
   }
 })
