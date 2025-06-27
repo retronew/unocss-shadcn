@@ -1,7 +1,7 @@
 {
   "name": "unocss-shadcn",
   "type": "module",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "packageManager": "pnpm@10.6.2",
   "description": "UnoCSS's preset for Shadcn",
   "author": "retronew <https://github.com/retronew>",
